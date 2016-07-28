@@ -1,0 +1,43 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.admission._id ? 'Edit Admission' : 'New Admission'}}</h1>
+  </div> 
+  
+  <div class="container">  
+  <div class="dropdown">
+    <button type="button" class="btn btn-primary">{{vm.selectedPatientDetails === "" ? "Select a Patient" : vm.selectedPatientDetails.name}}</button>
+		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="caret"></span>
+      <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu">
+      <li ng-if="vm.selectedPatientDetails !=''">
+			  <a ng-click="vm.setPatientDetails(0)">Select a Patient</a>
+			</li>
+      <li data-ng-repeat="patient in vm.patients">
+        <a data-ng-click="vm.setPatientDetails(patient.patientid)" data-ng-bind="patient.name"></a>
+      </li>      
+    </ul>
+  </div>
+</div>
+	
+  <div class="col-md-12">
+    <form name="vm.form.admissionForm" class="form-horizontal" ng-submit="vm.save(vm.form.admissionForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Name</label>
+          <input name="name" type="text" ng-model="vm.admission.name" id="name" class="form-control" placeholder="Name" required>
+          <div ng-messages="vm.form.admissionForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Admission name is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.admission._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

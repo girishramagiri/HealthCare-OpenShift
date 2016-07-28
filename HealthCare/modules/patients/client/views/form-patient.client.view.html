@@ -1,0 +1,49 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.patient._id ? 'Edit Patient' : 'New Patient'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.patientForm" class="form-horizontal" ng-submit="vm.save(vm.form.patientForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Patient ID</label>
+          <input name="patientid" type="text" ng-model="vm.patient.patientid" id="patientid" class="form-control" placeholder="Patientid" required>
+          <div ng-messages="vm.form.patientForm.patientid.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Patient ID is required.</p>
+          </div>
+		  <label class="control-label" for="name">Name</label>
+          <input name="name" type="text" ng-model="vm.patient.name" id="name" class="form-control" placeholder="Name" required>
+          <div ng-messages="vm.form.patientForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Patient name is required.</p>
+          </div>
+		  <label class="control-label" for="name">Age</label>
+          <input name="age" type="text" ng-model="vm.patient.age" id="age" class="form-control" placeholder="Age" required>
+          <div ng-messages="vm.form.patientForm.age.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Patient age is required.</p>
+          </div>
+		  <label class="control-label" for="name">Insurance ID</label>
+          <input name="insuranceid" type="text" ng-model="vm.patient.insuranceid" id="insuranceid" class="form-control" placeholder="Insuranceid" required>
+          <div ng-messages="vm.form.patientForm.insuranceid.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Patient Insurance ID is required.</p>
+          </div>
+		  <label class="control-label" for="name">Address</label>
+          <input name="address" type="text" ng-model="vm.patient.address" id="address" class="form-control" placeholder="Address" required>
+          <div ng-messages="vm.form.patientForm.address.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Patient Address is required.</p>
+          </div>
+		  <label class="control-label" for="name">Contactno</label>
+          <input name="contactno" type="text" ng-model="vm.patient.contactno" id="contactno" class="form-control" placeholder="Contactno" required>
+          <div ng-messages="vm.form.patientForm.contactno.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Patient Contact number is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.patient._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
