@@ -13,27 +13,27 @@
 
     vm.authentication = Authentication;
     vm.admission = admission;
-	  vm.patients = PatientsService.query();
-	  vm.selectedPatientDetails = "";
-	  vm.setPatientDetails = setPatientDetails;
+    vm.patients = PatientsService.query();
+    vm.selectedPatientDetails = '';
+    vm.setPatientDetails = setPatientDetails;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
 
 	// Set Patient Details
-	function setPatientDetails(patientid) {    
-    if(patientid == 0) {
-      vm.selectedPatientDetails = "";
-    } else {
-      for(var i = 0; i < vm.patients.length; i++) {
-        if(vm.patients[i].patientid == patientid) {
-          vm.selectedPatientDetails = vm.patients[i];
-        }
-      } 
-    }
+    function setPatientDetails(patientid) {    
+      if(patientid === 0) {
+        vm.selectedPatientDetails = '';
+      } else {
+        for(var i = 0; i < vm.patients.length; i++) {
+          if(vm.patients[i].patientid === patientid) {
+            vm.selectedPatientDetails = vm.patients[i];
+          }
+        } 
+      }
        	
-	}
+    }
 	
     // Remove existing Admission
     function remove() {
