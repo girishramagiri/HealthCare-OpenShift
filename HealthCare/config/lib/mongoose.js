@@ -21,7 +21,8 @@ module.exports.loadModels = function (callback) {
 // Initialize Mongoose
 module.exports.connect = function (cb) {
   var _this = this;
-
+  console.log(chalk.green('Database:\t\t\t\t' + config.db.uri));
+  console.log(chalk.green('Database Options:\t\t\t\t' + config.db.options));
   var db = mongoose.connect(config.db.uri, config.db.options, function (err) {
     // Log Error
     if (err) {
