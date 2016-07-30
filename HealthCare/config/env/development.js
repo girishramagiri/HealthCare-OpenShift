@@ -1,14 +1,15 @@
 'use strict';
 
 var defaultEnvConfig = require('./default');
-
+//var url = 'mongodb://dave:password@localhost:27017/myproject';
 module.exports = {
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + ('mongodb.openshift.com' || 'localhost') + '/healthcare',
+    uri: 'mongodb://mongodb:mongodb@mongodb.openshift.com:27017/healthcare',
+	/*uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + ('mongodb.openshift.com' || 'localhost') + '/healthcare',
     options: {
       user: 'mongodb',
       pass: 'mongodb'
-    },
+    },*/
     // Enable mongoose debug mode
     debug: process.env.MONGODB_DEBUG || false
   },
