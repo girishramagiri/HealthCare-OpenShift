@@ -17,7 +17,7 @@ function seedDB() {
 }
 
 // Initialize Models
-mongoose.loadModels(seedDB);
+//mongoose.loadModels(seedDB);
 
 module.exports.loadModels = function loadModels() {
   mongoose.loadModels();
@@ -53,10 +53,11 @@ module.exports.start = function start(callback) {
       if (config.meanjs['meanjs-version'])
         console.log(chalk.green('MEAN.JS version:\t\t\t' + config.meanjs['meanjs-version']));
       console.log('--');
-
       if (callback) callback(app, db, config);
     });
 
   });
+  console.log('initializing models');
+  mongoose.loadModels(seedDB);
 
 };
