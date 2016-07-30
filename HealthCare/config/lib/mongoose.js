@@ -11,6 +11,7 @@ var config = require('../config'),
 // Load the mongoose models
 module.exports.loadModels = function (callback) {
   // Globbing model files
+  console.log('inside loadModels function');
   config.files.server.models.forEach(function (modelPath) {
     require(path.resolve(modelPath));
   });
@@ -21,7 +22,9 @@ module.exports.loadModels = function (callback) {
 // Initialize Mongoose
 module.exports.connect = function (cb) {
   var _this = this;
-  console.log(chalk.green('Database:\t\t\t\t' + config.db.uri));  
+  console.log('inside connect function');
+  console.log(chalk.green('Database:\t\t\t\t' + config.db.uri));
+  console.log(chalk.green('DB props from process env:\t\t\t\t' + process.env.OPENSHIFT_MONGODB_DB_URL));  
   //var db = mongoose.connect(config.db.uri, config.db.options, function (err) {
   var db = mongoose.connect(config.db.uri, function (err) {
     // Log Error
