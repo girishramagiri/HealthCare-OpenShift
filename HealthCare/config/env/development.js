@@ -4,7 +4,7 @@ var defaultEnvConfig = require('./default');
 //var url = 'mongodb://dave:password@localhost:27017/myproject';
 module.exports = {
   db: {
-    uri: 'mongodb://mongodb:mongodb@172.30.162.27:27017/healthcare',
+    uri: 'mongodb://mongodb:mongodb@healthcaredb-healthcare.apps.india.openshift3roadshow.com',
 	/*uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + ('mongodb.openshift.com' || 'localhost') + '/healthcare',
     options: {
       user: 'mongodb',
