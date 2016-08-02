@@ -10,6 +10,12 @@ var mongoose = require('mongoose'),
  * Admission Schema
  */
 var AdmissionSchema = new Schema({
+  patientid: {
+    type: String,
+    default: '',
+    required: 'Please fill Patient ID',
+    trim: true
+  },
   name: {
     type: String,
     default: '',
