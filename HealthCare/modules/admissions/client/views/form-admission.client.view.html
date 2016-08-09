@@ -24,14 +24,27 @@
   <div class="col-md-12">
     <form name="vm.form.admissionForm" class="form-horizontal" ng-submit="vm.save(vm.form.admissionForm.$valid)" novalidate>
       <fieldset>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.admission.name" id="name" class="form-control" placeholder="Name" required readonly>
-          <div ng-messages="vm.form.admissionForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Admission name is required.</p>
-          </div>
+        <div class="form-group" >
+          <label class="control-label" for="name">Patient ID</label>
+          <input name="patientid" type="text" ng-model="vm.admission.patientid" id="patientid" class="form-control" placeholder="{{vm.selectedPatientDetails.patientid}}" required readonly>
+          
+		  <label class="control-label" for="name">Patient Name</label>
+          <input name="patientname" type="text" ng-model="vm.admission.patientname" id="patientname" class="form-control" placeholder="{{vm.selectedPatientDetails.name}}" required readonly>
+          
+		  <label class="control-label" for="name">Insurance ID</label>
+          <input name="insuranceid" type="text" ng-model="vm.admission.insuranceid" id="insuranceid" class="form-control" placeholder="vm.admission.insuranceid" required readonly>
+          <div class="input-group" show-errors>
+			  <label class="control-label" for="name">Admission Comments</label>
+			  <input name="name" type="text" ng-model="vm.admission.admissioncomments" id="name" class="form-control" placeholder="Comments" required>
+			  <div ng-messages="vm.form.admissionForm.name.$error" role="alert">
+				<p class="help-block error-text" ng-message="required">Admission Comments are required.</p>
+			  </div>
+		  </div>
         </div>
-        <div class="form-group">
+		<div ng-if="vm.patientSelected" class="form-group">
+          <button type="button" ng-click="vm.processInsurance(vm.admission.insuranceid)" class="btn btn-default">Process Insurance</button>
+        </div>
+        <div ng-if="vm.patientSelected" class="form-group">
           <button type="submit" class="btn btn-default">{{vm.admission._id ? 'Update' : 'Create'}}</button>
         </div>
         <div ng-show="vm.error" class="text-danger">

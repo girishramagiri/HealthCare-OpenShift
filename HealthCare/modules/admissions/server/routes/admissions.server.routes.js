@@ -19,6 +19,10 @@ module.exports = function(app) {
     .put(admissions.update)
     .delete(admissions.delete);
 
+  //Route to validate patient insurance ID  
+  app.route('/api/admissions/insurance/:insuranceId')
+    .get(admissions.validateInsurance);
+  
   // Finish by binding the Admission middleware
   app.param('admissionId', admissions.admissionByID);
 };

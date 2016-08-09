@@ -7,8 +7,32 @@ var path = require('path'),
   mongoose = require('mongoose'),
   Admission = mongoose.model('Admission'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
-  _ = require('lodash');
+  _ = require('lodash'),
+  http = require('http');
 
+
+exports.validateInsurance = function(req, res) {
+  //http://insurancespring-healthcarespringservice.apps.infosys.openshift3roadshow.com/health-1.3.5.RELEASE/healthinsurance/17728488
+  var options = {
+    host: 'insurancespring-healthcarespringservice.apps.infosys.openshift3roadshow.com',
+    port: 80,
+    path: '/health-1.3.5.RELEASE/healthinsurance/'+req.params.insuranceId,
+    method: 'GET'
+  };
+  http.request(options, function(response){
+    response.on('insurancePolicy',function(body){
+      console.info('GET result:\n');
+      process.stdout.write(body);
+      console.info('\n\n GET call completed');		
+    });
+    response.on('end',function(body){
+      console.log(body);
+      res.jsonp(body);
+    });
+  });
+  //res.jsonp(req.params.insuranceId);
+};  
+  
 /**
  * Create a Admission
  */
