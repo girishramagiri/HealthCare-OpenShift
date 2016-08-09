@@ -15,10 +15,15 @@ exports.validateInsurance = function(req, res) {
   //http://insurancespring-healthcarespringservice.apps.infosys.openshift3roadshow.com/health-1.3.5.RELEASE/healthinsurance/17728488
   var options = {
     host: 'insurancespring-healthcarespringservice.apps.infosys.openshift3roadshow.com',
-    port: 80,
+    port: 8080,
     path: '/health-1.3.5.RELEASE/healthinsurance/'+req.params.insuranceId,
     method: 'GET'
   };
+  
+  console.info('Options prepared: ');
+  console.info(options);
+  console.info('Proceed to make the GET call');
+  
   http.request(options, function(response){
     response.on('insurancePolicy',function(body){
       console.info('GET result:\n');
