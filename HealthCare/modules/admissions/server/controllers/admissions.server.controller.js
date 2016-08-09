@@ -8,21 +8,18 @@ var path = require('path'),
   Admission = mongoose.model('Admission'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash'),
-  http = require('http');
+  http = require('http'),
+  request = require('request');
 
 
 exports.validateInsurance = function(req, res) {
   //http://insurancespring-healthcarespringservice.apps.infosys.openshift3roadshow.com/health-1.3.5.RELEASE/healthinsurance/17728488
-  var options = {
+  /* var options = {
     host: 'insurancespring-healthcarespringservice.apps.infosys.openshift3roadshow.com',
     port: 8080,
     path: '/health-1.3.5.RELEASE/healthinsurance/'+req.params.insuranceId,
     method: 'GET'
   };
-  
-  console.info('Options prepared: ');
-  console.info(options);
-  console.info('Proceed to make the GET call');
   
   http.request(options, function(response){
     response.on('insurancePolicy',function(body){
@@ -34,6 +31,16 @@ exports.validateInsurance = function(req, res) {
       console.log(body);
       res.jsonp(body);
     });
+  }); */
+  
+  var id = req.params.insuranceId;
+  var url = 'http://insurancespring-healthcarespringservice.apps.infosys.openshift3roadshow.com/health-1.3.5.RELEASE/healthinsurance/'+id;
+  console.info('\n url: '+url);
+  request(url, function (error, response, body) {
+	if (!error && response.statusCode === 200) {
+      console.info(body);
+	  res.jsonp(body);
+    }
   });
   //res.jsonp(req.params.insuranceId);
 };  
